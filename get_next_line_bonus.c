@@ -99,7 +99,9 @@ char	*get_next_line(int fd)
 	char		*newline;
 	static char	*start_str[1024] = {NULL};
 
-	if (fd < 0 || fd >= 1024 || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd >= 1024)
+		return (NULL);
+	if (BUFFER_SIZE <= 0)
 	{
 		free(start_str[fd]);
 		start_str[fd] = NULL;
