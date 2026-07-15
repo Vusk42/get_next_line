@@ -56,15 +56,14 @@ static char	*ft_move_start(char	*start)
 	}
 	i += (start[i] == '\n');
 	new_buff = malloc((1 + ft_strlen(start) - i) * sizeof(char));
-	if (!new_buff)
-		return (NULL);
 	j = 0;
-	while (start[i + j])
+	while (new_buff && start[i + j])
 	{
 		new_buff[j] = start[i + j];
 		j++;
 	}
-	new_buff[j] = '\0';
+	if (new_buff)
+		new_buff[j] = '\0';
 	free(start);
 	return (new_buff);
 }
@@ -100,7 +99,7 @@ char	*get_next_line(int fd)
 	char		*newline;
 	static char	*start_str[1024] = {NULL};
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd >= 1024 || BUFFER_SIZE <= 0)
 	{
 		free(start_str[fd]);
 		start_str[fd] = NULL;

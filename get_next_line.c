@@ -55,15 +55,14 @@ static char	*ft_move_start(char	*start)
 	}
 	i += (start[i] == '\n');
 	new_buff = malloc((1 + ft_strlen(start) - i) * sizeof(char));
-	if (!new_buff)
-		return (NULL);
 	j = 0;
-	while (start[i + j])
+	while (new_buff && start[i + j])
 	{
 		new_buff[j] = start[i + j];
 		j++;
 	}
-	new_buff[j] = '\0';
+	if (new_buff)
+		new_buff[j] = '\0';
 	free(start);
 	return (new_buff);
 }

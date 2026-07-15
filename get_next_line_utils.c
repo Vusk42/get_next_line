@@ -58,7 +58,7 @@ char	*ft_strjoin(char *start, char *buff)
 	}
 	if (!buff)
 		return (start);
-	ptr = malloc(1 + ft_strlen(start) + ft_strlen(buff) * sizeof(char));
+	ptr = malloc((1 + ft_strlen(start) + ft_strlen(buff)) * sizeof(char));
 	if (ptr)
 		ptr = ft_join(ptr, start, buff);
 	free(start);
